@@ -1,0 +1,35 @@
+classXXX
+
+1.查看  
+
+传值：路径：/classXXX/Page 分页
+ 
+             字段解析：
+		
+		字段XXX   
+
+2.修改
+         路径：/classXXX/update
+        传值字段：
+
+       字段XXX  
+
+        返回值：
+      {"errcode":0,"errmsg":"OK","Retdata":{"result":1,"message":"成功"}}
+      { "errcode": -1,"errmsg": "Fail", "Retdata": {"result": -2,"message": "失败原因"}}	 
+		
+3.新增
+	 路径：/classXXX/insert  
+	传值字段：
+	    字段XXX  
+	 返回值：
+	    {"errcode":0, "errmsg":"OK",   "Retdata": {"result":1,"message":"成功"}}
+	    {"errcode":-1,"errmsg":"Fail", "Retdata": {"result": -2,"message": "失败原因"}}
+
+4.删除
+
+    路径：/classXXX/delete
+           传值：keyXXX;---当前keyXXX
+   返回值：
+     {"errcode":0,"errmsg":"OK","Retdata":{"result":1,"message":"成功"}}
+     { "errcode": -1,"errmsg": "Fail", "Retdata": {"result": -2,"message": "失败原因"}}

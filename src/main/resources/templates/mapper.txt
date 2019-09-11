@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comXXX.mapper.classXXXMapper">
+  
+	<!-- 字段列表1-->
+	<sql id="Base_Column_List">	 
+		fieldsXXX 
+	</sql>
+	 <!-- 字段列表2 为表连接准备 -->
+    <sql id="Base_Column_List_a">	 
+		fieldsAXXX
+	</sql>
+	
+   
+	<!-- 条件 -->
+	<sql id="baseQuery">
+ 
+baseQueryXXX
+		   
+	</sql>
+	
+     <!-- 按id查询 -->
+	<select id="selectCountByPrimaryKey" resultType="int">
+        select 
+	         IFNULL(count(*),0)
+	    from tablenameXXX
+	    where  1=1 and delXXX = 0
+		  <!-- <if test="keyXXX != null" >
+				AND keyXXX = #{keyXXX}
+		 </if> -->
+		 <include refid="baseQuery" />
+	</select>
+	
+	<select id="selectByPrimaryKey" resultType="hashMap">
+		select 
+			  <include refid="Base_Column_List" />
+		from 
+			tablenameXXX 
+		 where delXXX = 0
+		 <!--  <if test="keyXXX != null" >
+				AND keyXXX = #{keyXXX}
+		 </if> -->
+		 <include refid="baseQuery" />
+		 <!-- order by createDate desc -->
+	    <if test="start != null and limit!=null" >
+	    limit #{start},#{limit}
+	     </if>
+	</select>
+	
+	<!-- 条件查询 -->
+	<select id="selectByBaseQuery" resultType="hashMap">
+        select 
+	         <include refid="Base_Column_List" />
+	    from tablenameXXX
+	    where delXXX = 0
+	    <include refid="baseQuery" />
+		 <!-- order by createDate desc -->
+	    <if test="start != null and limit!=null" >
+	    limit #{start},#{limit}
+	     </if>
+	</select>
+	
+	<select id="selectCountByBaseQuery" resultType="int">
+        select 
+	         IFNULL(count(*),0)
+	    from tablenameXXX
+	    where  delXXX = 0
+	    <include refid="baseQuery" />
+	</select>
+  
+  
+	
+	<!-- 插入 -->
+  	<insert id="insert">
+		insert into tablenameXXX (
+insertXXX
+			createDate,modifyDate,delXXX
+		)values (
+insertvalueXXX
+			now(),now(),0
+		)
+	</insert>	
+	
+	<!-- 批量插入 -->
+		<insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into tablenameXXX(
+insertSingleXXX 
+			createDate,modifyDate,delXXX			
+			
+		) VALUES 
+		<foreach collection="list" item="item" index="index" separator=",">
+		(
+insertListXXX
+		 	now(),now(),0
+		)
+		</foreach>
+	</insert>
+	
+	
+	
+	<!-- 更新） -->
+	<update id="updateByPrimaryKey">
+		update tablenameXXX
+		<set>
+updateXXX
+			 modifyDate = now(),
+			 delXXX = 0		
+		</set>
+		where 1=1
+			AND delXXX =0
+			AND keyXXX = #{keyXXX}
+	</update>
+	
+	<update id="updateByBaseQuery">
+		update 
+			tablenameXXX
+		<set>
+updateXXX
+			 modifyDate = now(),
+			 delXXX = 0	
+		</set>
+		where 1=1
+		AND delXXX =0
+		<include refid="baseQuery" />
+	</update>
+	
+	<!-- 删除（假删） -->
+	<update id="deleteByPrimaryKey" >
+			update 
+				tablenameXXX
+			set delXXX =1
+		where delXXX = 0
+			AND keyXXX = #{keyXXX}
+	</update>
+	
+	<!-- 删除（真删） -->
+	<delete id="deleteByPrimaryKeyYes">
+		delete 
+		from tablenameXXX
+		where 
+			keyXXX = #{keyXXX}	
+	</delete>
+	
+</mapper>

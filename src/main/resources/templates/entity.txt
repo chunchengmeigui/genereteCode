@@ -1,0 +1,11 @@
+package comXXX.entity;
+
+public class classXXX {
+	
+privateXXX
+
+	
+publicXXX
+
+
+}
