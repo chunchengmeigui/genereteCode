@@ -190,7 +190,7 @@ updateListNoteXXX
     
     public boolean isNotEmpty(Object obj) {
     	if (obj != null && !obj.equals("") && !obj.equals("null")) {
-    		return false;
+    		return true;
 		}
 		return false;
 	}
