@@ -805,8 +805,14 @@ public class TableMsg {
 		String template = tab + "\tSET(\"`fieldXXX` = #'{'list[{0}].fieldValueXXX }\");\r\n";
 		String keyTemplate = tab + "WHERE(\"`keyXXX` = #'{'list[{0}].keyValueXXX }\");\r\n";
 		String resultMybatis = "";
-		for (int i = 0; i < fieldNameList.size(); i++) {
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
 			String fieldName = fieldNameList.get(i);
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
+			
 			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
 		updateTitle = updateTitle.replace("tablenameXXX", tableName);
@@ -823,8 +829,16 @@ public class TableMsg {
 		String template = tab + "\tSET(\"`fieldXXX` = #{ fieldValueXXX }\");\r\n";
 		String keyTemplate = tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
 		String resultMybatis = "";
-		for (int i = 0; i < fieldNameList.size(); i++) {
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
 			String fieldName = fieldNameList.get(i);
+			
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
+			
+			
 			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
 		updateTitle = updateTitle.replace("tablenameXXX", tableName);
@@ -844,8 +858,15 @@ public class TableMsg {
 		String keyTemplate = 
 				tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
 		String resultMybatis = "";
-		for (int i = 0; i < fieldNameList.size(); i++) {
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
 			String fieldName = fieldNameList.get(i); 
+			
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
+			
 			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
 		updateTitle = updateTitle.replace("tablenameXXX", tableName);
@@ -865,6 +886,11 @@ public class TableMsg {
 		String resultMybatis = "";
 		loop:for (int i = 0; i < fieldNameList.size(); i++) {
 			String fieldName = fieldNameList.get(i);
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
 			
 			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
