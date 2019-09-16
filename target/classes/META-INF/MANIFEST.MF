@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Springboot-Mybatis-Create
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.dabao.databaseUtil
+Build-Jdk: 1.8.0_161
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Springboot-Mybatis-Create
+Created-By: Maven Integration for Eclipse
+

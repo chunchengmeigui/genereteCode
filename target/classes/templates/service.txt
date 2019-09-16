@@ -1,0 +1,120 @@
+package comXXX.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import comXXX.mapper.classXXXMapper;
+import comXXX.util.UuidUtil;
+
+/**
+ *
+ * TableChinessNameXXX
+ *
+ * @author authorXXX
+ * @CreateDate DateXXX
+ *
+ */
+ 
+@Service
+public class classXXXService{
+	
+	@Autowired
+	classXXXMapper classMinXXXMapper;
+
+		
+	/**
+	 * TableChinessNameXXX 新增
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int insert(Map<String, Object> map) {
+	//	map.put("keyXXX",("classXXX"+System.currentTimeMillis() + StringRandom.getStringRandom(6, 65, 97)).toLowerCase());
+		map.put("keyXXX",("classXXX"+UuidUtil.getUUID()));
+		return classMinXXXMapper.insert(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 修改
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int updateByPrimaryKey(Map<String, Object> map) {
+		return classMinXXXMapper.updateByPrimaryKey(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 按条件修改
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int updateByBaseQuery(Map<String, Object> map) {
+		return classMinXXXMapper.updateByBaseQuery(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 按主键查询条数
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int selectCountByPrimaryKey(Map<String, Object> map) {
+		return classMinXXXMapper.selectCountByPrimaryKey(map);
+	}
+	
+	/**
+	 * TableChinessNameXXX 按主键查询
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public List<Map<String, Object>> selectByPrimaryKey(Map<String, Object> map) {
+		return classMinXXXMapper.selectByPrimaryKey(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 按条件查询条数
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int selectCountByBaseQuery(Map<String, Object> map) {
+		return classMinXXXMapper.selectCountByBaseQuery(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 按条件查询
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public List<Map<String, Object>> selectByBaseQuery(Map<String, Object> map) {
+		return classMinXXXMapper.selectByBaseQuery(map);
+	}
+		
+	/**
+	 * TableChinessNameXXX 按主键假删
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int deleteByPrimaryKey(Map<String, Object> map) {
+		return classMinXXXMapper.deleteByPrimaryKey(map);
+	}
+	
+	/**
+	 * TableChinessNameXXX 按主键真删
+	 * @param map
+	 * @return
+	 */
+	@Transactional
+	public int deleteByPrimaryKeyYes(Map<String, Object> map) {
+		return classMinXXXMapper.deleteByPrimaryKeyYes(map);
+	}
+}
