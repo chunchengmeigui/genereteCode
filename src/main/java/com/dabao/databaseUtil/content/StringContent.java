@@ -15,13 +15,13 @@ public class StringContent {
 	
 	public static String service = FileUtil.getContent("service");
 	
-	public static String mapper = FileUtil.getContent("mapper");
+	public static String mapper = FileUtil.getContent("mapper2");
 	
 	public static String dao = FileUtil.getContent("dao");
 	
 	public static  String daoNote = FileUtil.getContent("daoNote");
 	
-	public static String entity = FileUtil.getContent("entity");
+	public static String entity = FileUtil.getContent("entity2");
 	
 	public static String doc = FileUtil.getContent("doc");
 	
