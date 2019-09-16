@@ -9,8 +9,10 @@ import java.util.Map;
 import com.dabao.databaseUtil.content.StringContent;
 import com.dabao.databaseUtil.entity.Project;
 import com.dabao.databaseUtil.entity.Table;
+import com.dabao.databaseUtil.entity.TableMsg;
 import com.dabao.databaseUtil.util.DateUtil;
 import com.dabao.databaseUtil.util.FileUtil;
+import com.dabao.databaseUtil.util.StrUtils;
 
 public class Create {
 
@@ -31,7 +33,7 @@ public class Create {
 			if(infomation_arr.length>1) {
 				TableChinessName = infomation_arr[1];
 			}
-			Table table = new Table(tableName,className,pakegeName,TableChinessName);
+			TableMsg table = new TableMsg(tableName,className,pakegeName,TableChinessName);
 			if (Project.getController()) {
 				//生成路径
 				String controllerUrl = url + File.separator +table.getControllerUrl();
@@ -106,12 +108,51 @@ public class Create {
 			
 		}
 	}
-	
-
-
     
+    private static String replaceText(String template, TableMsg table) { 
+    	//公共的数据
+    	template = template.replace("comXXX", table.getPakageName());
+    	template = template.replace("classXXX", table.getClassName());
+    	template = template.replace("classMinXXX", table.getClassMinName());
+    	template = template.replace("keyXXX", table.getKeyName());
+    	template = template.replace("keyValueXXX", StrUtils.underline2Camel(table.getKeyName()));
+    	template = template.replace("delXXX", table.getDelName());
+    	template = template.replace("TableChinessNameXXX", table.getTableChinessName());
+    	template = template.replace("authorXXX", table.getAuthor());
+    	template = template.replace("DateXXX", DateUtil.dateToString(new Date(), "yyyy-MM-dd HH:ss:mm"));
+    	//xml的数据
+        template = template.replace("tablenameXXX", table.getTableName()); 
+        template = template.replace("fieldsXXX", table.getFieldStrings());
+        template = template.replace("fieldsAXXX", table.getFieldStringsa());
+        
+        
+        template = template.replace("BaseResultMapXXX", table.baseResultMapxml());
+        template = template.replace("baseQueryXXX", table.xmlBaseQuery());
+        template = template.replace("BaseResultMapXXX", table.baseResultMapxml());
+        template = template.replace("baseQueryUpdateXXX", table.baseQueryUpdate());
+        
+        template = template.replace("insertXmlXXX", table.insertXml());
+        template = template.replace("insertListXmlXXX", table.insertListXml());
+        
+        template = template.replace("updateXmlXXX", table.updateXml());
+        
+        template = template.replace("entityXXX", table.entityGetSet());
+        
+//        template = template.replace("insertXXX", table.getInsertCondition());
+//        template = template.replace("insertvalueXXX", table.getInsertValueCondition());
+//        template = template.replace("insertSingleXXX", table.getInsertSingle());
+//        template = template.replace("insertListXXX", table.getInsertList());
+//        template = template.replace("updateXXX", table.getUpdateCondition());
+//        template = template.replace("baseQueryXXX", table.getSelectCondition());
+        template = template.replace("字段XXX", table.getDoc());
+//         //实体类
+//        template = template.replace("privateXXX", table.getPrivateFieldText());
+//        template = template.replace("publicXXX", table.getSetAndGetText());
+    	
+    	return template;
+    }
     
-    private static String replaceText(String template, Table table) { 
+    private static String replaceText2(String template, TableMsg table) { 
     	//公共的数据
     	template = template.replace("comXXX", table.getPakageName());
     	template = template.replace("classXXX", table.getClassName());
@@ -122,24 +163,24 @@ public class Create {
     	template = template.replace("authorXXX", table.getAuthor());
     	template = template.replace("DateXXX", DateUtil.dateToString(new Date(), "yyyy-MM-dd HH:ss:mm"));
     	//xml的数据
-        template = template.replace("tablenameXXX", table.getTableName()); 
-        template = template.replace("fieldsXXX", table.getFieldStrings());
-        template = template.replace("fieldsAXXX", table.getFieldStringsa());
-        template = template.replace("insertXXX", table.getInsertCondition());
-        template = template.replace("insertvalueXXX", table.getInsertValueCondition());
-        template = template.replace("insertSingleXXX", table.getInsertSingle());
-        template = template.replace("insertListXXX", table.getInsertList());
-        template = template.replace("updateXXX", table.getUpdateCondition());
-        template = template.replace("baseQueryXXX", table.getSelectCondition());
-        template = template.replace("字段XXX", table.getDoc());
-         //实体类
-        template = template.replace("privateXXX", table.getPrivateFieldText());
-        template = template.replace("publicXXX", table.getSetAndGetText());
+    	template = template.replace("tablenameXXX", table.getTableName()); 
+    	template = template.replace("fieldsXXX", table.getFieldStrings());
+    	template = template.replace("fieldsAXXX", table.getFieldStringsa());
+    	template = template.replace("insertXXX", table.getInsertCondition());
+    	template = template.replace("insertvalueXXX", table.getInsertValueCondition());
+    	template = template.replace("insertSingleXXX", table.getInsertSingle());
+    	template = template.replace("insertListXXX", table.getInsertList());
+    	template = template.replace("updateXXX", table.getUpdateCondition());
+    	template = template.replace("baseQueryXXX", table.getSelectCondition());
+    	template = template.replace("字段XXX", table.getDoc());
+    	//实体类
+    	template = template.replace("privateXXX", table.getPrivateFieldText());
+    	template = template.replace("publicXXX", table.getSetAndGetText());
     	
     	return template;
     }
     
-    private static String replaceTextNote(String template, Table table) { 
+    private static String replaceTextNote(String template, TableMsg table) { 
     	//公共的数据
     	template = template.replace("comXXX", table.getPakageName());
     	template = template.replace("classXXX", table.getClassName());
