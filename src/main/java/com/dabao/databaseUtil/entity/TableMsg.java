@@ -909,7 +909,7 @@ public class TableMsg {
 
 
 	public String getDelName() {
-		if (this.delName != null && this.delName.equals("")) {
+		if (this.delName != null && !this.delName.equals("")) {
 			return this.delName;
 		}
 		return null;
