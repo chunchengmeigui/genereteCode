@@ -219,7 +219,6 @@ public class TableMsg {
 				exList.add(fieldNameList.get(i));
 			}
 			if (comment.contains("ex")) {
-				this.delName = fieldNameList.get(i);
 				exList.add(fieldNameList.get(i));
 			}
 		}
