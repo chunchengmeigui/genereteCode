@@ -1,0 +1,8 @@
+package comXXX.entity;
+
+public class classXXX {
+	
+entityXXX
+
+
+}
