@@ -13,7 +13,7 @@ public class Demo {
 		DataConnect.setDRIVER("com.mysql.cj.jdbc.Driver");
 
 		
-		DataConnect.setURL("jdbc:mysql://127.0.0.1:3306/dataSource1?useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true");
+		DataConnect.setURL("jdbc:mysql://127.0.0.1:3306/dataSource1?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true");
 		DataConnect.setUSERNAME("root");
 		DataConnect.setPASSWORD("123456");
 		//需要文件相关配置
