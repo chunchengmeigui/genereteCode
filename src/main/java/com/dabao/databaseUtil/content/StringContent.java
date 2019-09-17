@@ -21,11 +21,15 @@ public class StringContent {
 	
 	public static  String daoNote = FileUtil.getContent("daoNote");
 	
+	public static  String daoNoteEntity = FileUtil.getContent("daoNoteEntity");
+	
 	public static String entity = FileUtil.getContent("entity2");
 	
 	public static String doc = FileUtil.getContent("doc");
 	
 	public static String mapperNote = FileUtil.getContent("mapperNote");
+	
+	public static String mapperNoteEntity = FileUtil.getContent("mapperNoteEntity");
 	
 	public static void main(String[] args) {
 		System.out.println(StringContent.mapper);

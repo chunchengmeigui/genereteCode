@@ -1,0 +1,198 @@
+package comXXX.mapper.provider;
+
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.jdbc.SQL;
+import comXXX.entity.classXXX;
+
+public class classXXXProvider {
+
+
+	/**
+	 * 条件查询
+	 * @param param
+	 * @return
+	 */
+    public String selectByBaseQuery(classXXX param) {
+        return new SQL() {
+            {
+                SELECT("*");
+                FROM("tablenameXXX");
+BaseQueryNoteXXX
+                
+            }
+            
+        }.toString();
+    }
+    
+    
+    /**
+     * 条件查询条数
+     * @param param
+     * @return
+     */
+    public String selectCountByBaseQuery(classXXX param) {
+    	
+    	return new SQL() {
+    		{
+    			SELECT("count(*)");
+    			FROM("tablenameXXX");
+    			
+BaseQueryNoteXXX
+
+    		}
+    		
+    	}.toString();
+    }
+    
+    /**
+     * 主键查询
+     * @param param
+     * @return
+     */
+    public String selectByPrimaryKey(classXXX param) {
+    	return new SQL() {
+    		{
+    			SELECT("*");
+    			FROM("tablenameXXX");
+    			WHERE("keyXXX = #{ keyXXX }");
+    		}
+    		
+    	}.toString();
+    }
+    
+    /**
+     * 主键查询(条数)
+     * @param param
+     * @return
+     */
+    public String selectCountByPrimaryKey(classXXX param) {
+    	return new SQL() {
+    		{
+    			SELECT("count(*)");
+    			FROM("tablenameXXX");
+    			WHERE("keyXXX = #{ keyXXX }");
+    		}
+    		
+    	}.toString();
+    }
+    
+    /**
+     * =新增
+     * @param param
+     * @return
+     */
+    public String insert(classXXX param) {
+    	return new SQL() {
+    		{
+    		
+insertNoteXXX
+    			
+    		}
+    		
+    	}.toString();
+    }
+
+    
+    /**
+     * =批量新增
+     * @param param
+     * @return
+     */
+    public String insertList(List<classXXX> list) {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("INSERT INTO tablenameXXX (");
+insertListNoteXXX
+    	sb.append(")VALUES");
+    	
+    	StringBuilder listSBuilder = new StringBuilder();
+insertListValueNoteXXX
+    	
+    	MessageFormat mf = new MessageFormat(
+    			"("+ listSBuilder.toString()+ ")");
+    	
+    	for (int i = 0; i < list.size(); i++) {
+    		sb.append("\r\n");
+    		sb.append(mf.format(new Object[]{i}));
+    		if (i < list.size() - 1) {
+    			sb.append(",");
+    		}
+    	}
+    	return sb.toString();
+    }
+    
+        
+    /**
+     * 主键更新
+     * @param param
+     * @return
+     */
+    public String updateByPrimaryKey(classXXX param) {
+    	return new SQL() {
+    		{
+    			
+updateByPrimaryKeyNoteXXX
+    			
+    		}
+    		
+    	}.toString();
+    }
+    
+    /**
+     * 条件更新
+     * @param param
+     * @return
+     */
+    public String updateByBaseQuery(classXXX param) {
+    	return new SQL() {
+    		{
+
+updateByConditionXXX
+
+    		}
+    		
+    	}.toString();
+    }
+    
+    
+    /**
+     * =批量更新
+     * @param param
+     * @return
+     */
+    public String updateList(List<classXXX> list) {
+    	
+    	String sql = new SQL() {
+    		{
+updateListNoteXXX
+    		}
+    		
+    	}.toString();
+    	
+    	
+    	StringBuilder sb = new StringBuilder();
+    	//System.out.println(sql);
+    	MessageFormat mf = new MessageFormat(
+    			sql
+    			);
+    			
+    	for (int i = 0; i < list.size(); i++) {
+    		sb.append(mf.format(new Object[]{i}));
+    		if (i < list.size() - 1) {
+    			sb.append(";\r\n");
+    		}
+    	}	
+    	
+    	return sb.toString();
+    }
+    
+    public boolean isNotEmpty(Object obj) {
+    	if (obj != null && !obj.equals("") && !obj.equals("null")) {
+    		return true;
+		}
+		return false;
+	}
+}

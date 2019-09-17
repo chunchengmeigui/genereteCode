@@ -11,6 +11,9 @@ public class Project {
 	private static boolean mybatis = false;
 	private static boolean doc = false;
 	
+	//实体类开发
+	private static boolean isEntityDevelop = false;
+	
 	//是否使用注解开发
 	private static boolean noteDevelop  = false;
 	
@@ -57,5 +60,12 @@ public class Project {
 	public static void setNoteDevelop(boolean noteDevelop) {
 		Project.noteDevelop = noteDevelop;
 	}
+	public static boolean isEntityDevelop() {
+		return isEntityDevelop;
+	}
+	public static void setEntityDevelop(boolean isEntityDevelop) {
+		Project.isEntityDevelop = isEntityDevelop;
+	}
+	
 	
 }

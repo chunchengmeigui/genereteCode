@@ -710,6 +710,35 @@ public class TableMsg {
 
 		return resultMybatis;
 	}
+	
+	/**
+	 * mybatis注解开发
+	 */
+	public String mybatisAnnectionEntity() {
+		
+		String template = "\t\t\tif (isNotEmpty(param.getfieldGetXXX())) {"
+				+ "\tWHERE(\"`fieldXXX` = #{ fieldValueXXX }\");\t}\r\n";
+		
+//		String template = "\t\tif (param.get(\"fieldXXX\") != null && !param.get(\"fieldXXX\").equals(\"\")) {\r\n"
+//				+ "\t\t    WHERE(\"fieldXXX = #{ fieldXXX }\");\r\n" + "\t\t}\r\n";
+		String resultMybatis = "";
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+			String fieldName = fieldNameList.get(i);
+			
+			for (String ex : exList) {
+				if (ex.equals(fieldName)) {
+					continue loop;
+				}
+			}
+			
+			resultMybatis += template
+					.replace("fieldXXX", fieldName)
+					.replace("fieldValueXXX", StrUtils.underline2Camel(fieldName))
+					.replace("fieldGetXXX", getFieldNameUp(fieldName));;
+		}
+		
+		return resultMybatis;
+	}
 
 	public String insertNote() {
 		String tab = "\t\t\t";
@@ -873,6 +902,36 @@ public class TableMsg {
 		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", StrUtils.underline2Camel(keyName));
 		return updateTitle + resultMybatis;
 	}
+	
+	//根据key更新，中间做判断(实体类)
+	public String updateNotePandanEntity() {
+		
+		String tab = "\t\t\t";
+		
+		String updateTitle = tab+"UPDATE(\"tablenameXXX\");\r\n";
+		String template = 
+				tab + "\tif (isNotEmpty(param.getfieldGetXXX())) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+		String keyTemplate = 
+				tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
+		String resultMybatis = "";
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+			String fieldName = fieldNameList.get(i); 
+			
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
+			
+			resultMybatis += template
+					.replace("fieldXXX", fieldName)
+					.replace("fieldValueXXX", StrUtils.underline2Camel(fieldName))
+					.replace("fieldGetXXX", getFieldNameUp(fieldName));
+		}
+		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", StrUtils.underline2Camel(keyName));
+		return updateTitle + resultMybatis;
+	}
 
 	
 	public String updateConditionNote() {
@@ -892,10 +951,36 @@ public class TableMsg {
 				}
 			}
 			
-			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
+			resultMybatis += template.replace("fieldXXX", fieldName)
+					.replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
 		updateTitle = updateTitle.replace("tablenameXXX", tableName);
 		return updateTitle + resultMybatis + mybatisAnnection();
+	}
+	
+	public String updateConditionNoteEntity() {
+		
+		String tab = "\t\t\t";
+		
+		String updateTitle = tab + "UPDATE(\"`tablenameXXX`\");\r\n";
+		String template = 
+				tab + "if (isNotEmpty(param.getfieldGetXXX())) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+		String keyTemplate = tab + "WHERE(\"keyXXX = #{ keyValueXXX }\");\r\n";
+		String resultMybatis = "";
+		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+			String fieldName = fieldNameList.get(i);
+			for (String string : specialKey) {
+				if (string.equals("fieldName")) {
+					continue loop;
+				}
+			}
+			
+			resultMybatis += template.replace("fieldXXX", fieldName)
+					.replace("fieldValueXXX", StrUtils.underline2Camel(fieldName))
+					.replace("fieldGetXXX", getFieldNameUp(fieldName));
+		}
+		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+		return updateTitle + resultMybatis + mybatisAnnectionEntity();
 	}
 	
 	

@@ -25,6 +25,8 @@ public class Demo {
 		Project.setMybatis(true);
 	    //是否为注解开发
 		Project.setNoteDevelop(true);
+		//参数为实体类
+		Project.setEntityDevelop(true);
 		
 		//创建表的设置
 		String	url = "E://顾客";

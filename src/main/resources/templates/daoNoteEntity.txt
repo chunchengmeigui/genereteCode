@@ -1,0 +1,81 @@
+package comXXX.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
+
+import comXXX.mapper.provider.classXXXProvider;
+import comXXX.entity.classXXX;
+
+/**
+ *
+ * TableChinessNameXXX
+ *
+ * @author authorXXX
+ * @CreateDate DateXXX
+ *
+ */
+@Mapper
+public interface classXXXMapper{
+	/**
+	 * 查询
+	 */
+	
+	//查询条数
+	@SelectProvider(type=classXXXProvider.class,method="selectCountByPrimaryKey")
+    int selectCountByPrimaryKey(classXXX classMinXXX);
+
+	//查询
+    @SelectProvider(type=classXXXProvider.class,method="selectByPrimaryKey")
+    List<Map<String,Object>> selectByPrimaryKey(classXXX classMinXXX);
+    
+    //按条件查询（条数）
+    @SelectProvider(type=classXXXProvider.class,method="selectCountByBaseQuery")
+    int selectCountByBaseQuery(classXXX classMinXXX);
+    
+    //按条件查询
+    @SelectProvider(type=classXXXProvider.class,method="selectByBaseQuery")
+    List<Map<String,Object>> selectByBaseQuery(classXXX classMinXXX);
+    
+    
+    /**
+     * =新增
+     */
+	@InsertProvider(type=classXXXProvider.class,method="insert")
+    int insert(classXXX classMinXXX);
+	
+	@InsertProvider(type=classXXXProvider.class,method="insertList")
+	int insertList(List<classXXX> classMinXXXs);
+	
+    
+    /**
+     *  =更新
+     */
+    //按主键更新
+    @UpdateProvider(type=classXXXProvider.class,method="updateByPrimaryKey")
+    int updateByPrimaryKey(classXXX classMinXXX);
+	
+    //按条件更新
+	@UpdateProvider(type=classXXXProvider.class,method="updateByBaseQuery")
+	int updateByBaseQuery(classXXX classMinXXX);
+    
+    
+    /**
+     * 删除
+     */
+    //真删
+    @Delete("delete form tablenameXXX where keyXXX = #{keyXXX}")
+	int deleteByPrimaryKeyYes(classXXX classMinXXX);
+    
+    //假删
+	@Update("update set delXXX = 1 from tablenameXXX where keyXXX = #{keyXXX}")
+    int deleteByPrimaryKey(classXXX classMinXXX);
+    
+}
