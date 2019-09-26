@@ -321,7 +321,8 @@ public class TableMsg {
 	 * @return
 	 */
 	public String baseResultMapxml() {
-		String template = "\t\t<result column=\"fieldNameXXX\" jdbcType=\"jdbcTypeXXX\" property=\"propertyNameXXX\"  javaType=\"javaTypeXXX\"   />\r\n";
+		String template = "\t\t<result column=\"fieldNameXXX\"  property=\"propertyNameXXX\"   />\r\n";
+//		String template = "\t\t<result column=\"fieldNameXXX\" jdbcType=\"jdbcTypeXXX\" property=\"propertyNameXXX\"  javaType=\"javaTypeXXX\"   />\r\n";
 		
 		StringBuffer baseResultMap = new StringBuffer();
 		
@@ -685,11 +686,309 @@ public class TableMsg {
 	}
 	
 	
+//	/**
+//	 * mybatis注解开发
+//	 */
+//	public String mybatisAnnection() {
+//
+//		String template = "\t\t\tif (isNotEmpty(param.get(\"fieldValueXXX\"))) {"
+//				+ "\tWHERE(\"`fieldXXX` = #{ fieldValueXXX }\");\t}\r\n";
+//		
+////		String template = "\t\tif (param.get(\"fieldXXX\") != null && !param.get(\"fieldXXX\").equals(\"\")) {\r\n"
+////				+ "\t\t    WHERE(\"fieldXXX = #{ fieldXXX }\");\r\n" + "\t\t}\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			
+//			for (String ex : exList) {
+//				if (ex.equals(fieldName)) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//		}
+//
+//		return resultMybatis;
+//	}
+//	
+//	/**
+//	 * mybatis注解开发
+//	 */
+//	public String mybatisAnnectionEntity() {
+//		
+//		String template = "\t\t\tif (isNotEmpty(param.getfieldGetXXX())) {"
+//				+ "\tWHERE(\"`fieldXXX` = #{ fieldValueXXX }\");\t}\r\n";
+//		
+////		String template = "\t\tif (param.get(\"fieldXXX\") != null && !param.get(\"fieldXXX\").equals(\"\")) {\r\n"
+////				+ "\t\t    WHERE(\"fieldXXX = #{ fieldXXX }\");\r\n" + "\t\t}\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			
+//			for (String ex : exList) {
+//				if (ex.equals(fieldName)) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template
+//					.replace("fieldXXX", fieldName)
+//					.replace("fieldValueXXX", (fieldName))
+//					.replace("fieldGetXXX", getFieldNameUp(fieldName));;
+//		}
+//		
+//		return resultMybatis;
+//	}
+//
+//	public String insertNote() {
+//		String tab = "\t\t\t";
+//
+//		String insertTitle = tab + "INSERT_INTO(\"tablenameXXX\");\r\n";
+//		String template = tab + "VALUES(\"`fieldXXX`\", \"#{ fieldValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//		}
+//		insertTitle = insertTitle.replace("tablenameXXX", tableName);
+//		return insertTitle + resultMybatis;
+//	}
+//
+//	public String insertListNote() {
+//		
+//		String tab = "\t\t\t";
+//		String aString = tab+" sb.append(\"fileNameThreeXXX\");\r\n";
+//
+//		StringBuffer stringBuffer = new StringBuffer();
+//
+//		String fileNameThree = "";
+//		
+//		for (int i = 0, j = fieldNameList.size(); i < j; i++) {
+//
+//			String fieldName = fieldNameList.get(i).trim();
+//			fileNameThree += "`" + fieldName + "`";
+//			if (i != j - 1) {
+//				fileNameThree += " , " + disposeFieldTwo("`" + fieldName + "`", 2);
+//				
+//				if ((i + 1) % 3 == 0) {
+//					String replace = aString.replace("fileNameThreeXXX", fileNameThree);
+//					stringBuffer.append(replace);
+//					fileNameThree = "";
+//				}
+//			} 
+//			else {// 处理最后1、2个
+//				String replace = aString.replace("fileNameThreeXXX", fileNameThree);
+//				stringBuffer.append(replace);
+//			}
+//		}
+//		return stringBuffer.toString();
+//	}
+//	
+//	public String insertListVauleNote() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String aString = " listSBuilder.append(\"fileNameThreeListXXX\");";
+//		String list_template = "#'{'list[{0}].fieldValueXXX}";
+//		
+//		StringBuffer stringBuffer = new StringBuffer();
+//		
+//		String fileNameThree = "";
+//		for (int i = 0, j = fieldNameList.size(); i < j; i++) {
+//			
+//			String fieldName = fieldNameList.get(i).trim();
+//			
+//			fileNameThree += list_template.replace("fileNameXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//			
+//			if (i != j - 1) {
+//				fileNameThree += " , " ;//+ disposeFieldTwo("`" + fieldName + "`", 2);
+//				if ((i + 1) % 3 == 0) {
+//					String replace = aString.replace("fileNameThreeListXXX", fileNameThree);
+//					stringBuffer.append(tab);
+//					stringBuffer.append(replace);
+//					stringBuffer.append("\r\n");
+//					fileNameThree = "";
+//				}
+//			} 
+//			else {// 处理最后1、2个
+//				String replace = aString.replace("fileNameThreeListXXX", fileNameThree);
+//				stringBuffer.append(tab);
+//				stringBuffer.append(replace);
+//				stringBuffer.append("\r\n");
+//			}
+//			
+//		}
+//		return stringBuffer.toString();
+//	}
+//	
+//	
+//
+//	
+//
+//	//根据key更新updateNoteList
+//	public String updateNoteList() {
+//
+//		String tab = "\t\t\t";
+//
+//		String updateTitle = tab + "UPDATE(\"tablenameXXX\");\r\n";
+//		String template = tab + "\tSET(\"`fieldXXX` = #'{'list[{0}].fieldValueXXX }\");\r\n";
+//		String keyTemplate = tab + "WHERE(\"`keyXXX` = #'{'list[{0}].keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", (keyName));
+//		return updateTitle + resultMybatis;
+//	}
+//	
+//	//根据key更新，中间不做判断
+//	public String updateNote() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String updateTitle = tab + "UPDATE(\"tablenameXXX\");\r\n";
+//		String template = tab + "\tSET(\"`fieldXXX` = #{ fieldValueXXX }\");\r\n";
+//		String keyTemplate = tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", (keyName));
+//		return updateTitle + resultMybatis;
+//	}
+//	
+//	
+//	//根据key更新，中间做判断
+//	public String updateNotePandan() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String updateTitle = tab+"UPDATE(\"tablenameXXX\");\r\n";
+//		String template = 
+//				tab + "\tif (isNotEmpty(param.get(\"fieldValueXXX\"))) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+//		String keyTemplate = 
+//				tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i); 
+//			
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", (fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", (keyName));
+//		return updateTitle + resultMybatis;
+//	}
+//	
+//	//根据key更新，中间做判断(实体类)
+//	public String updateNotePandanEntity() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String updateTitle = tab+"UPDATE(\"tablenameXXX\");\r\n";
+//		String template = 
+//				tab + "\tif (isNotEmpty(param.getfieldGetXXX())) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+//		String keyTemplate = 
+//				tab + "WHERE(\"`keyXXX` = #{ keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i); 
+//			
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template
+//					.replace("fieldXXX", fieldName)
+//					.replace("fieldValueXXX", (fieldName))
+//					.replace("fieldGetXXX", getFieldNameUp(fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", (keyName));
+//		return updateTitle + resultMybatis;
+//	}
+//
+//	
+//	public String updateConditionNote() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String updateTitle = tab + "UPDATE(\"`tablenameXXX`\");\r\n";
+//		String template = 
+//				 tab + "if (isNotEmpty(param.get(\"fieldValueXXX\"))) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+//		String keyTemplate = tab + "WHERE(\"keyXXX = #{ keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName)
+//					.replace("fieldValueXXX", (fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		return updateTitle + resultMybatis + mybatisAnnection();
+//	}
+//	
+//	public String updateConditionNoteEntity() {
+//		
+//		String tab = "\t\t\t";
+//		
+//		String updateTitle = tab + "UPDATE(\"`tablenameXXX`\");\r\n";
+//		String template = 
+//				tab + "if (isNotEmpty(param.getfieldGetXXX())) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+//		String keyTemplate = tab + "WHERE(\"keyXXX = #{ keyValueXXX }\");\r\n";
+//		String resultMybatis = "";
+//		loop:for (int i = 0; i < fieldNameList.size(); i++) {
+//			String fieldName = fieldNameList.get(i);
+//			for (String string : specialKey) {
+//				if (string.equals("fieldName")) {
+//					continue loop;
+//				}
+//			}
+//			
+//			resultMybatis += template.replace("fieldXXX", fieldName)
+//					.replace("fieldValueXXX", (fieldName))
+//					.replace("fieldGetXXX", getFieldNameUp(fieldName));
+//		}
+//		updateTitle = updateTitle.replace("tablenameXXX", tableName);
+//		return updateTitle + resultMybatis + mybatisAnnectionEntity();
+//	}
+//	================================================================================================================
 	/**
 	 * mybatis注解开发
 	 */
 	public String mybatisAnnection() {
-
+		
 		String template = "\t\t\tif (isNotEmpty(param.get(\"fieldValueXXX\"))) {"
 				+ "\tWHERE(\"`fieldXXX` = #{ fieldValueXXX }\");\t}\r\n";
 		
@@ -707,7 +1006,7 @@ public class TableMsg {
 			
 			resultMybatis += template.replace("fieldXXX", fieldName).replace("fieldValueXXX", StrUtils.underline2Camel(fieldName));
 		}
-
+		
 		return resultMybatis;
 	}
 	
@@ -739,10 +1038,10 @@ public class TableMsg {
 		
 		return resultMybatis;
 	}
-
+	
 	public String insertNote() {
 		String tab = "\t\t\t";
-
+		
 		String insertTitle = tab + "INSERT_INTO(\"tablenameXXX\");\r\n";
 		String template = tab + "VALUES(\"`fieldXXX`\", \"#{ fieldValueXXX }\");\r\n";
 		String resultMybatis = "";
@@ -753,18 +1052,18 @@ public class TableMsg {
 		insertTitle = insertTitle.replace("tablenameXXX", tableName);
 		return insertTitle + resultMybatis;
 	}
-
+	
 	public String insertListNote() {
 		
 		String tab = "\t\t\t";
 		String aString = tab+" sb.append(\"fileNameThreeXXX\");\r\n";
-
+		
 		StringBuffer stringBuffer = new StringBuffer();
-
+		
 		String fileNameThree = "";
 		
 		for (int i = 0, j = fieldNameList.size(); i < j; i++) {
-
+			
 			String fieldName = fieldNameList.get(i).trim();
 			fileNameThree += "`" + fieldName + "`";
 			if (i != j - 1) {
@@ -822,14 +1121,14 @@ public class TableMsg {
 	}
 	
 	
-
 	
-
+	
+	
 	//根据key更新updateNoteList
 	public String updateNoteList() {
-
+		
 		String tab = "\t\t\t";
-
+		
 		String updateTitle = tab + "UPDATE(\"tablenameXXX\");\r\n";
 		String template = tab + "\tSET(\"`fieldXXX` = #'{'list[{0}].fieldValueXXX }\");\r\n";
 		String keyTemplate = tab + "WHERE(\"`keyXXX` = #'{'list[{0}].keyValueXXX }\");\r\n";
@@ -932,7 +1231,7 @@ public class TableMsg {
 		resultMybatis += keyTemplate.replace("keyXXX", keyName).replace("keyValueXXX", StrUtils.underline2Camel(keyName));
 		return updateTitle + resultMybatis;
 	}
-
+	
 	
 	public String updateConditionNote() {
 		
@@ -940,7 +1239,7 @@ public class TableMsg {
 		
 		String updateTitle = tab + "UPDATE(\"`tablenameXXX`\");\r\n";
 		String template = 
-				 tab + "if (isNotEmpty(param.get(\"fieldValueXXX\"))) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
+				tab + "if (isNotEmpty(param.get(\"fieldValueXXX\"))) {\tSET(\"`fieldXXX` = #{fieldValueXXX}\");\t}\r\n";
 		String keyTemplate = tab + "WHERE(\"keyXXX = #{ keyValueXXX }\");\r\n";
 		String resultMybatis = "";
 		loop:for (int i = 0; i < fieldNameList.size(); i++) {
@@ -1022,7 +1321,7 @@ public class TableMsg {
 		if (this.delName != null && !this.delName.equals("")) {
 			return this.delName;
 		}
-		return null;
+		return "delFalg";
 	}
 	
 	public static void main(String[] args) {

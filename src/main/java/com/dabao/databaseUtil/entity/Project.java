@@ -17,6 +17,9 @@ public class Project {
 	//是否使用注解开发
 	private static boolean noteDevelop  = false;
 	
+	//是否使用驼峰式命名转化
+	private static boolean transforFiled  = true;
+	
 	
 	public static boolean getController() {
 		return controller;
@@ -65,6 +68,12 @@ public class Project {
 	}
 	public static void setEntityDevelop(boolean isEntityDevelop) {
 		Project.isEntityDevelop = isEntityDevelop;
+	}
+	public static boolean isTransforFiled() {
+		return transforFiled;
+	}
+	public static void setTransforFiled(boolean transforFiled) {
+		Project.transforFiled = transforFiled;
 	}
 	
 	
